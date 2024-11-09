@@ -1,3 +1,179 @@
-[gd_scene format=3 uid="uid://c47u7vry8j170"]
+[gd_scene load_steps=6 format=3 uid="uid://dfki7w8s7hto4"]
 
-[node name="Node3D" type="Node3D"]
+[ext_resource type="Script" path="res://ObjectController.gd" id="1_uyqi4"]
+[ext_resource type="SphereMesh" uid="uid://c3ywtmg276mfv" path="res://sphere.tres" id="2_ihmt1"]
+[ext_resource type="CylinderMesh" uid="uid://bcwt32guh8pvr" path="res://cone.tres" id="3_fnlve"]
+[ext_resource type="Script" path="res://ui.gd" id="4_pflo8"]
+
+[sub_resource type="GDScript" id="GDScript_tkpgd"]
+script/source = "extends Node3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="Scene" type="Node3D"]
+script = SubResource("GDScript_tkpgd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+script = ExtResource("1_uyqi4")
+
+[node name="Cone" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 300, 100, 0)
+mesh = ExtResource("3_fnlve")
+skeleton = NodePath("../..")
+
+[node name="Sphere" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -300, 100, 0)
+mesh = ExtResource("2_ihmt1")
+skeleton = NodePath("../..")
+
+[node name="Control" type="Control" parent="MeshInstance3D"]
+custom_minimum_size = Vector2(240, 350)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 240.0
+offset_bottom = 350.0
+script = ExtResource("4_pflo8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MeshInstance3D/Control"]
+layout_mode = 1
+offset_right = 240.0
+offset_bottom = 350.0
+
+[node name="SphereParametrs" type="Label" parent="MeshInstance3D/Control"]
+layout_mode = 2
+offset_top = 10.0
+offset_right = 240.0
+offset_bottom = 33.0
+text = "Параметры сферы"
+horizontal_alignment = 1
+
+[node name="SphereX" type="Label" parent="MeshInstance3D/Control/SphereParametrs"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 52.0
+offset_right = 65.0
+offset_bottom = 75.0
+text = "X"
+horizontal_alignment = 1
+
+[node name="InputSphereX" type="LineEdit" parent="MeshInstance3D/Control/SphereParametrs/SphereX"]
+layout_mode = 0
+offset_left = -15.5
+offset_top = 31.0
+offset_right = 51.5625
+offset_bottom = 62.0
+
+[node name="SphereY" type="Label" parent="MeshInstance3D/Control/SphereParametrs"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 52.0
+offset_right = 140.0
+offset_bottom = 75.0
+text = "Y"
+horizontal_alignment = 1
+
+[node name="InputSphereX" type="LineEdit" parent="MeshInstance3D/Control/SphereParametrs/SphereY"]
+layout_mode = 0
+offset_left = -15.5
+offset_top = 31.0
+offset_right = 51.5625
+offset_bottom = 62.0
+
+[node name="SphereZ" type="Label" parent="MeshInstance3D/Control/SphereParametrs"]
+layout_mode = 0
+offset_left = 175.0
+offset_top = 52.0
+offset_right = 215.0
+offset_bottom = 75.0
+text = "Z
+"
+horizontal_alignment = 1
+
+[node name="InputSphereZ" type="LineEdit" parent="MeshInstance3D/Control/SphereParametrs/SphereZ"]
+layout_mode = 0
+offset_left = -15.5
+offset_top = 31.0
+offset_right = 51.5625
+offset_bottom = 62.0
+
+[node name="OK-Sphere" type="Button" parent="MeshInstance3D/Control/SphereParametrs"]
+layout_mode = 0
+offset_left = 69.0
+offset_top = 125.0
+offset_right = 171.0
+offset_bottom = 156.0
+text = "Применить"
+
+[node name="ConeParametrs" type="Label" parent="MeshInstance3D/Control"]
+layout_mode = 0
+offset_top = 180.0
+offset_right = 240.0
+offset_bottom = 203.0
+text = "Параметры конуса"
+horizontal_alignment = 1
+
+[node name="ConeX" type="Label" parent="MeshInstance3D/Control/ConeParametrs"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 52.0
+offset_right = 65.0
+offset_bottom = 75.0
+text = "X"
+horizontal_alignment = 1
+
+[node name="InputConeX" type="LineEdit" parent="MeshInstance3D/Control/ConeParametrs/ConeX"]
+layout_mode = 0
+offset_left = -15.5
+offset_top = 31.0
+offset_right = 51.5625
+offset_bottom = 62.0
+
+[node name="ConeY" type="Label" parent="MeshInstance3D/Control/ConeParametrs"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 52.0
+offset_right = 140.0
+offset_bottom = 75.0
+text = "Y"
+horizontal_alignment = 1
+
+[node name="InputConeX" type="LineEdit" parent="MeshInstance3D/Control/ConeParametrs/ConeY"]
+layout_mode = 0
+offset_left = -15.5
+offset_top = 31.0
+offset_right = 51.5625
+offset_bottom = 62.0
+
+[node name="ConeZ" type="Label" parent="MeshInstance3D/Control/ConeParametrs"]
+layout_mode = 0
+offset_left = 175.0
+offset_top = 52.0
+offset_right = 215.0
+offset_bottom = 75.0
+text = "Z
+"
+horizontal_alignment = 1
+
+[node name="InputConeZ" type="LineEdit" parent="MeshInstance3D/Control/ConeParametrs/ConeZ"]
+layout_mode = 0
+offset_left = -15.5
+offset_top = 31.0
+offset_right = 51.5625
+offset_bottom = 62.0
+
+[node name="OK-Cone" type="Button" parent="MeshInstance3D/Control/ConeParametrs"]
+layout_mode = 0
+offset_left = 69.0
+offset_top = 125.0
+offset_right = 171.0
+offset_bottom = 156.0
+text = "Применить"
